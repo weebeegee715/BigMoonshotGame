@@ -4,36 +4,26 @@
 # name of the character.
 
 init python:
+    def low_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("val.wav", channel="sound", loop=True)
+        elif event == "slow_done" or event == "end":
+            renpy.music.stop(channel="sound")
 
-    #Generate seperate audio channel from voice for beeps.
-    renpy.music.register_channel(name='beeps', mixer='voice')
+    def mid_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("mid_beep.ogg", channel="sound", loop=True)
+        elif event == "slow_done" or event == "end":
+            renpy.music.stop(channel="sound")
 
-    #Character callback that generates the sound.
-    def e(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "eileen")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=False)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-
-    #Example of an alternate character callback
-    def e2(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "eileen2")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=False)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-    def c(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "a")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=False)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
+    def high_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("high_beep.ogg", channel="sound", loop=True)
+        elif event == "slow_done" or event == "end":
+            renpy.music.stop(channel="sound")
 
 
-define e = Character("Eileen", callback=e)
-define e2 = Character("Eileen", callback=e2)
-define c = Character("Chatty", callback=c)
+define v = Character("Val", callback=low_beep)
 
 # The game starts here.
 
@@ -53,11 +43,7 @@ label start:
 
     # These display lines of dialogue.
 
-    e "Oh, to speak with a voice!"
-
-    e2 "Is a lovely, lovely thing!"
-
-    c "h e l l o"
+    v "Oh, to speak with a voice, this text is on and on and on and on lalalala."
 
     # This ends the game.
 

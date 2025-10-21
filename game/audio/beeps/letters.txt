@@ -1,6 +1,6 @@
 Seperate files for each would be probably easier in the long run. Please use the samples in the folder "letters" as an example for the correct sound to make. Have fun!
 
-a-
+a- 
 b-
 c-
 d-

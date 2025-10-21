@@ -11,7 +11,7 @@ init python:
     #Character callback that generates the sound.
     def e(event, **kwargs):
         if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "bing")
+            build_sentence(_last_say_what, "eileen")
             renpy.sound.play("audio/output.wav", channel="beeps", loop=False)
         elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
             renpy.sound.stop(channel="beeps")
@@ -23,6 +23,7 @@ init python:
             renpy.sound.play("audio/output.wav", channel="beeps", loop=False)
         elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
             renpy.sound.stop(channel="beeps")
+
 
 define e = Character("Eileen", callback=e)
 define e2 = Character("Eileen", callback=e2)
@@ -49,6 +50,8 @@ label start:
     e "I just wish my voice function worked!"
 
     e2 "Me too..."
+
+    v "Me three..."
 
     # This ends the game.
 

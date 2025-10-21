@@ -19,7 +19,13 @@ init python:
     #Example of an alternate character callback
     def e2(event, **kwargs):
         if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "bing")
+            build_sentence(_last_say_what, "eileen2")
+            renpy.sound.play("audio/output.wav", channel="beeps", loop=False)
+        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
+            renpy.sound.stop(channel="beeps")
+    def c(event, **kwargs):
+        if event == "show": #When the text is shown
+            build_sentence(_last_say_what, "a")
             renpy.sound.play("audio/output.wav", channel="beeps", loop=False)
         elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
             renpy.sound.stop(channel="beeps")
@@ -27,7 +33,7 @@ init python:
 
 define e = Character("Eileen", callback=e)
 define e2 = Character("Eileen", callback=e2)
-
+define c = Character("Chatty", callback=c)
 
 # The game starts here.
 
@@ -47,11 +53,11 @@ label start:
 
     # These display lines of dialogue.
 
-    e "I just wish my voice function worked!"
+    e "Oh, to speak with a voice!"
 
-    e2 "Me too..."
+    e2 "Is a lovely, lovely thing!"
 
-    v "Me three..."
+    c "h e l l o"
 
     # This ends the game.
 

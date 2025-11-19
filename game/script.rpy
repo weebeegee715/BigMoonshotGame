@@ -18,12 +18,23 @@ init python:
 define v = Character("Val", callback=val_beep, color="#de9c01")
 define m = Character("Mira", callback=mira_beep, color="#329b15")
 
-define typography(what):
+# Typography Pausemaker
+init python:
+    def typography(what):
 
-    replacements = [
-            (".",".{w=.2}")
-            
-    ]
+        replacements = [
+            (".", ". {w=.2}"),
+            ("?", "? {w=.25}"),
+            ("!", "! {w=.25}"),
+            (",", ", {w=.15}"),
+        ]
+
+        for item in replacements:
+            what = what.replace(item[0],item[1])
+        
+        return what
+    
+    config.say_menu_text_filter = typography
 
 # The game starts here.
 
@@ -41,7 +52,7 @@ label start:
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show eileen happy
+    show mira neutral
 
     # These display lines of dialogue.
 
@@ -60,8 +71,6 @@ label start:
     m "{sc}But we don't even have sprites yet...{/sc}"
 
     v "That's okayy, theyre just in the sketchbook rn."
-
-    v " I'm {swap=Victoria@Valencia@0.3}name{/swap} ! - IM {swap=VALENCIA@VICTORIA@0.1}{sc}NAME{/sc}{/swap} !"
 
     v "{sc}I don't know...{/sc}"
 
